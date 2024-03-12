@@ -1,0 +1,19 @@
+
+* { box-sizing: border-box; }
+
+ 
+#images-div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+
+}
+img {
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    background: #ffffff;
+    position: relative;
+    transition: transform ease 0.3s;  
+}
+  
