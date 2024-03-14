@@ -12,6 +12,7 @@ async function albumsData() {
 
     const albumsResponse = await fetch(`${API_URL}/albums?_expand=user&_embed=photos&_page=${page}&_limit=${itemsPerPage}`)
     const albums = await albumsResponse.json()
+    
     const albumsDiv = document.querySelector('#albums');
 
     albums.forEach(album => {
@@ -26,7 +27,7 @@ async function albumsData() {
                     <h5 class="card-title">${album.id}. ${album.title}</h5>
                     <h6 class="card-subtitle mb-2 text-body-secondary">Author: ${album.user.name}</h6>
                     <p class="card-text">Amount of photos: ${album.photos.length}</p>
-                    <a href="./photos.html?albumId=${album.id}" class="card-link">Go to album's page</a>
+                    <a href="./album.html?albumId=${album.id}" class="card-link">Go to album's page</a>
                 </div>
             </div>
         `

@@ -35,7 +35,6 @@ async function posts() {
                 text: `Read more`,
                 href: `./post.html?postId=${post.id}`
             }
-
         }
         const postCard = createCardElement(postData)
         postsDiv.append(postCard)

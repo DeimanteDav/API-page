@@ -1,74 +1,97 @@
+import { createElement } from "../functions.js";
+
 export default function pagination(pageName, response, page, itemsPerPage, itemsWrap) {
     const total = response.headers.get('X-Total-Count')
     const pageNumber = total/itemsPerPage
 
-    let div = document.createElement('div');
-    div.classList.add('pagination-div')
+    const paginationWrapper = createElement('nav')
+    const paginationList = createElement('ul', 'pagination justify-content-center')
+    paginationList.style.width = '100%'
+
+    paginationWrapper.append(paginationList)
 
 
-    let firstPage = document.createElement('a');
-    let lastPage = document.createElement('a');
+    // const div = createElement('div');
+    // div.classList.add('pagination-div')
 
-    let previous = document.createElement('a');
-    let next = document.createElement('a');
+    const firstPageItem = createElement('li', 'page-item')
+    const firstPageLink = createElement('a', 'page-link');
+    firstPageItem.append(firstPageLink)
+
+    const lastPageItem = createElement('li', 'page-item')
+    const lastPageLink = createElement('a', 'page-link');
+    lastPageItem.append(lastPageLink)
+
+    const previousPageItem = createElement('li', 'page-item')
+    const previousPageLink = createElement('a', 'page-link');
+    previousPageItem.append(previousPageLink)
+
+    const nextPageItem = createElement('li', 'page-item')
+    const nextPageLink = createElement('a', 'page-link');
+    nextPageItem.append(nextPageLink)
+
     if (page != 1) {
-        firstPage.textContent = 'First page'
-        firstPage.href = `./${pageName}.html?page=1&items-per-page=${itemsPerPage}`
-        firstPage.classList.add('pagination')
+        firstPageLink.textContent = 'First page'
+        firstPageLink.href = `./${pageName}.html?page=1&items-per-page=${itemsPerPage}`
+        // firstPageLink.classList.add('pagination')
 
-        previous.textContent = 'Previous'
-        previous.href = `./${pageName}.html?page=${Number(page)-1}&items-per-page=${itemsPerPage}`
-        previous.classList.add('pagination')
+        previousPageLink.textContent = 'Previous'
+        previousPageLink.href = `./${pageName}.html?page=${Number(page)-1}&items-per-page=${itemsPerPage}`
+        // previousPageLink.classList.add('pagination')
+    paginationList.append(firstPageItem, previousPageItem)
+
     }
 
     if (page != pageNumber) {
-        lastPage.textContent = 'Last page'
-        lastPage.href = `./${pageName}.html?page=${pageNumber}&items-per-page=${itemsPerPage}`
-        lastPage.classList.add('pagination')
+        lastPageLink.textContent = 'Last page'
+        lastPageLink.href = `./${pageName}.html?page=${pageNumber}&items-per-page=${itemsPerPage}`
+        // lastPageLink.classList.add('pagination')
+        nextPageLink.textContent = 'Next'
+        nextPageLink.href = `./${pageName}.html?page=${Number(page)+1}&items-per-page=${itemsPerPage}`
 
-        next.textContent = 'Next'
-        next.href = `./${pageName}.html?page=${Number(page)+1}&items-per-page=${itemsPerPage}`
-        next.classList.add('pagination')
+        // nextPageLink.classList.add('pagination')
     }
     
-    div.append(firstPage, previous)
     
 
     for (let i = 1; i <= pageNumber; i++) {
-        let pageNum = document.createElement('a');
-        pageNum.textContent = i
-        pageNum.href = `./${pageName}.html?page=${i}&items-per-page=${itemsPerPage}`
-        pageNum.classList.add('pagination')
+        const pageNumItem = createElement('li', 'page-item')
+        const pageNumLink = createElement('a', 'page-link');
+        pageNumLink.textContent = i
+        pageNumLink.href = `./${pageName}.html?page=${i}&items-per-page=${itemsPerPage}`
+        pageNumLink.classList.add('pagination')
 
         if (page == i) {
-            pageNum.classList.add('selected-page')
+            // pageNumLink.classList.add('selected-page')
         }
-        div.append(pageNum)
+
+        pageNumItem.append(pageNumLink)
+        paginationList.append(pageNumItem)
     }
    
     if (total > 10) {
         itemsWrap.before(paginationSelect(itemsPerPage, total))
-        div.append(next, lastPage)
+        paginationList.append(nextPageItem, lastPageItem)
         
-        return div
+        return paginationWrapper
     } else {
         return ''
     }
 }
 
 function paginationSelect(itemsPerPage, total) {
-    let itemsDiv = document.createElement('div');
-    itemsDiv.classList.add('pagination-select-div')
+    const itemsDiv = createElement('div');
+    // itemsDiv.classList.add('pagination-select-div')
 
-    let text = document.createElement('p');
-    text.textContent = 'per page'
-    let selectItemsPerPage = document.createElement('select');
+    const text = createElement('p');
+    text.textContent = 'Per page'
+    const selectItemsPerPage = createElement('select', 'form-select form-select-sm w-25');
 
 
     function itemsPerP(numArr) {
-        let itemsPerPageData = numArr
+        const itemsPerPageData = numArr
         itemsPerPageData.forEach(perPage => {
-            let option = document.createElement('option');
+            const option = createElement('option');
             option.value = perPage
             option.textContent = perPage
             selectItemsPerPage.append(option)

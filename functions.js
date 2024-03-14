@@ -141,7 +141,6 @@ export function createElement(type = 'div', classNames, text) {
 }
 
 export function createCardElement(params) {
-    console.log(params);
     const {title, subtitle, text, link, anotherLink} = params
 
     if (title) {
