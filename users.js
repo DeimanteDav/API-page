@@ -1,7 +1,7 @@
 import header from "./components/header.js";
 import { API_URL } from "./config.js";
 import pagination from "./components/pagination.js";
-import { createCardElement, createElement } from "./functions.js";
+import { renderUserCard } from "./functions.js";
 
 async function usersData() {
     const queryParams = document.location.search
@@ -17,24 +17,7 @@ async function usersData() {
     const usersDiv = document.querySelector('#users');
 
     users.forEach(user => {
-        // let author = document.createElement('h2');
-        // author.innerHTML = `<a href="./user.html?userId=${user.id}">Author: ${user.name}</a>`
-
-        // let posts = document.createElement('p');
-        // posts.textContent = `Amount of posts: ${user.posts.length}`
-
-        // usersDiv.append(author, posts)
-
-        const userData = {
-            title: user.name,
-            subtitle: `Amount of posts: ${user.posts.length}`,
-            link: {
-                text: `Go to user's page`,
-                href: `./user.html?userId=${user.id}`
-            }
-        }
-
-        usersDiv.append(createCardElement(userData))
+        usersDiv.append(renderUserCard(user))
     })
     
     header()

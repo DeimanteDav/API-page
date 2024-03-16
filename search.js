@@ -1,4 +1,4 @@
-import { fetchData, renderSinglePost } from "./functions.js";
+import { fetchData, renderAlbumCard, renderPostCard, renderSinglePost, renderUserCard } from "./functions.js";
 import { API_URL } from "./config.js";
 import header from "./components/header.js";
 
@@ -57,7 +57,7 @@ searchByCategory()
 
 
 async function searchAlbums(search, searchResults) {
-    const albums = await fetchData(`${API_URL}/albums?_embed=photos&q=${search}`)
+    const albums = await fetchData(`${API_URL}/albums?_embed=photos&q=${search}&_expand=user`)
     
     const searchTitle = document.createElement('h2');
     
@@ -68,28 +68,16 @@ async function searchAlbums(search, searchResults) {
     } else {
         searchTitle.textContent = `Found ${albums.length} albums`
     }
+    
     searchResults.append(searchTitle)
-
-    albums.forEach(album => {
-        const title = document.createElement('h2');
-        title.innerHTML = `<a href="./album.html?albumId=${album.id}">Title: ${album.title}</a>`
-        
-        // const author = document.createElement('p');
-        // author.textContent = `Name: ${album.user.name}`
-        
-        const photos = document.createElement('p');
-        photos.textContent = `Amount of photos: ${album.photos.length}`
-
-        const singlePhoto = document.createElement('img');
-        singlePhoto.src = album.photos[0].thumbnailUrl
-        
-        searchResults.append(title, photos, singlePhoto)
+    albums.forEach((album, i) => {
+        searchResults.append(renderAlbumCard(album, i))
     });
 }
 
 
 async function searchUsers(search, searchResults) {
-    const users = await fetchData(`${API_URL}/users?&q=${search}`)
+    const users = await fetchData(`${API_URL}/users?&q=${search}&_embed=posts`)
 
     const searchTitle = document.createElement('h2');
     if (users.length == 0) {
@@ -102,18 +90,12 @@ async function searchUsers(search, searchResults) {
     
     searchResults.append(searchTitle)
     users.forEach(user => {
-        console.log(user);
-        const author = document.createElement('h2');
-        author.innerHTML = `<a href="./user.html?userId=${user.id}">Author: ${user.name}</a>`
-
-        // const posts = document.createElement('p');
-        // posts.textContent = `Amount of posts: ${user.posts.length}`
-        searchResults.append(author)
+        searchResults.append(renderUserCard(user))
     })
 }
 
 async function searchPosts(search, searchResults) { 
-    const posts = await fetchData(`${API_URL}/posts?q=${search}`)
+    const posts = await fetchData(`${API_URL}/posts?q=${search}&_expand=user`)
     
     const searchTitle = document.createElement('h2');
     
@@ -125,12 +107,10 @@ async function searchPosts(search, searchResults) {
         searchTitle.textContent = `Found ${posts.length} posts`
     }
 
+    searchResults.append(searchTitle)
+
     posts.forEach(post => {
-        searchResults.append(renderSinglePost({
-            post, 
-            showBody: true,
-            showReadMore: true,
-        }))
+        searchResults.append(renderPostCard(post))
     })
 }
 

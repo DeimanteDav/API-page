@@ -1,11 +1,11 @@
 import { createElement, navigation } from '../functions.js'
 
 export default function header() {
-    let header = createElement('nav', 'navbar navbar-expand-lg navbar-light bg-light')
+    let header = createElement('nav', 'navbar navbar-expand-lg border-bottom')
+    // header.dataset.bsTheme = 'dark'
     let nav = navigation()
 
     // header.style.marginBottom = '30px'
-    
     header.innerHTML = `
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">Home</a>

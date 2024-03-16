@@ -6,7 +6,6 @@ export default function pagination(pageName, response, page, itemsPerPage, items
 
     const paginationWrapper = createElement('nav')
     const paginationList = createElement('ul', 'pagination justify-content-center')
-    paginationList.style.width = '100%'
 
     paginationWrapper.append(paginationList)
 

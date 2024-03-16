@@ -12,8 +12,8 @@ async function userData() {
   const userResponse = await fetch(`${API_URL}/users/${userId}?_embed=posts&_embed=albums`)
   const user = await userResponse.json()
 
-  const albumResponse = await fetch(`${API_URL}/albums?userId=${userId}&_embed=photos`)
-  const albumData = await albumResponse.json()
+  // const albumResponse = await fetch(`${API_URL}/albums?userId=${userId}&_embed=photos`)
+  // const albumData = await albumResponse.json()
 
   const userPage = document.querySelector('#user-page');
   const userName = createElement('h1', '', user.name)
@@ -21,7 +21,7 @@ async function userData() {
   header()
 
   userPage.prepend(userName)
-  userPage.append(renderUserData(user), renderPosts(user.posts), renderAlbum1(albumData), renderAlbum2(albumData), renderAlbum3(albumData))
+  userPage.append(renderUserData(user), renderPosts(user.posts))
 
     // const swiper = new Swiper('.swiper1', {
     //     // Optional parameters
@@ -151,112 +151,112 @@ function renderPosts(posts) {
 
 
 
-function renderAlbum1(albums) {
-    let userAlbums = createElement('div');
+// function renderAlbum1(albums) {
+//     let userAlbums = createElement('div');
     
-    // albums.forEach(album => {
-          let albumDiv = createElement('div');
-          albumDiv.classList.add('swiper', 'swiper1')
+//     // albums.forEach(album => {
+//           let albumDiv = createElement('div');
+//           albumDiv.classList.add('swiper', 'swiper1')
 
-          let sliderDiv = createElement('div');
-          sliderDiv.classList.add('swiper-wrapper')
+//           let sliderDiv = createElement('div');
+//           sliderDiv.classList.add('swiper-wrapper')
   
-          let pagination = createElement('div');
-          pagination.classList.add('swiper-pagination')
+//           let pagination = createElement('div');
+//           pagination.classList.add('swiper-pagination')
 
-          let prevButton = createElement('div');
-          prevButton.classList.add('swiper-button-prev')
-          let nextButton = createElement('div');
-          nextButton.classList.add('swiper-button-next')
-          let scrollbar = createElement('div');
-          scrollbar.classList.add('swiper-scrollbar')
+//           let prevButton = createElement('div');
+//           prevButton.classList.add('swiper-button-prev')
+//           let nextButton = createElement('div');
+//           nextButton.classList.add('swiper-button-next')
+//           let scrollbar = createElement('div');
+//           scrollbar.classList.add('swiper-scrollbar')
 
-          albums[0].photos.forEach(photo => {
-              let photosDiv = createElement('div');
-              photosDiv.classList.add('swiper-slide')
-              let image = createElement('img')
-              image.src = photo.url
-              photosDiv.append(image)
-              sliderDiv.append(photosDiv)
-          });
-          userAlbums.append(albumDiv)
-          albumDiv.append(sliderDiv, pagination, prevButton, nextButton, scrollbar)
-      // });
-      return userAlbums
-  }
+//           albums[0].photos.forEach(photo => {
+//               let photosDiv = createElement('div');
+//               photosDiv.classList.add('swiper-slide')
+//               let image = createElement('img')
+//               image.src = photo.url
+//               photosDiv.append(image)
+//               sliderDiv.append(photosDiv)
+//           });
+//           userAlbums.append(albumDiv)
+//           albumDiv.append(sliderDiv, pagination, prevButton, nextButton, scrollbar)
+//       // });
+//       return userAlbums
+//   }
   
-  function renderAlbum2(albums) {
-        let userAlbums = createElement('div');
+//   function renderAlbum2(albums) {
+//         let userAlbums = createElement('div');
       
-        let albumDiv = createElement('div');
-        albumDiv.classList.add('swiper', 'swiper2')
+//         let albumDiv = createElement('div');
+//         albumDiv.classList.add('swiper', 'swiper2')
 
-        let sliderDiv = createElement('div');
-        sliderDiv.classList.add('swiper-wrapper')
+//         let sliderDiv = createElement('div');
+//         sliderDiv.classList.add('swiper-wrapper')
 
-        let pagination = createElement('div');
-        pagination.classList.add('swiper-pagination')
-        let prevButton = createElement('div');
-        prevButton.classList.add('swiper-button-prev')
-        let nextButton = createElement('div');
-        nextButton.classList.add('swiper-button-next')
+//         let pagination = createElement('div');
+//         pagination.classList.add('swiper-pagination')
+//         let prevButton = createElement('div');
+//         prevButton.classList.add('swiper-button-prev')
+//         let nextButton = createElement('div');
+//         nextButton.classList.add('swiper-button-next')
 
-        albums[2].photos.forEach(photo => {
-            let photosDiv = createElement('div');
-            photosDiv.classList.add('swiper-slide')
-            let image = createElement('img')
-            image.src = photo.url
-            photosDiv.append(image)
-            sliderDiv.append(photosDiv)
-        });
-        userAlbums.append(albumDiv)
-        albumDiv.append(sliderDiv, pagination)
+//         albums[2].photos.forEach(photo => {
+//             let photosDiv = createElement('div');
+//             photosDiv.classList.add('swiper-slide')
+//             let image = createElement('img')
+//             image.src = photo.url
+//             photosDiv.append(image)
+//             sliderDiv.append(photosDiv)
+//         });
+//         userAlbums.append(albumDiv)
+//         albumDiv.append(sliderDiv, pagination)
 
-        return userAlbums
-    }
+//         return userAlbums
+//     }
     
-    function renderAlbum3(albums) {
-        let userAlbums = createElement('div');
+//     function renderAlbum3(albums) {
+//         let userAlbums = createElement('div');
 
-        let albumDiv = createElement('div');
-        albumDiv.classList.add('swiper', 'swiper3')
+//         let albumDiv = createElement('div');
+//         albumDiv.classList.add('swiper', 'swiper3')
 
-        let sliderDiv = createElement('div');
-        sliderDiv.classList.add('swiper-wrapper')
+//         let sliderDiv = createElement('div');
+//         sliderDiv.classList.add('swiper-wrapper')
 
-        let pagination = createElement('div');
-        pagination.classList.add('swiper-pagination')
-        let prevButton = createElement('div');
-        prevButton.classList.add('swiper-button-prev')
-        let nextButton = createElement('div');
-        nextButton.classList.add('swiper-button-next')
+//         let pagination = createElement('div');
+//         pagination.classList.add('swiper-pagination')
+//         let prevButton = createElement('div');
+//         prevButton.classList.add('swiper-button-prev')
+//         let nextButton = createElement('div');
+//         nextButton.classList.add('swiper-button-next')
     
-        let autoplay = createElement('div');
-        autoplay.classList.add('autoplay-progress')
-        let svg = createElement('svg');
-        svg.setAttribute('vievBox', '0 0 48 48')
+//         let autoplay = createElement('div');
+//         autoplay.classList.add('autoplay-progress')
+//         let svg = createElement('svg');
+//         svg.setAttribute('vievBox', '0 0 48 48')
 
-        let circle = createElement('circle');
-        circle.setAttribute('cx', 24)
-        circle.setAttribute('cy', 24)
-        circle.setAttribute('r', 20)
+//         let circle = createElement('circle');
+//         circle.setAttribute('cx', 24)
+//         circle.setAttribute('cy', 24)
+//         circle.setAttribute('r', 20)
 
-        let spanElement = createElement('span');
+//         let spanElement = createElement('span');
 
-        svg.append(circle)
-        autoplay.append(svg, spanElement)
+//         svg.append(circle)
+//         autoplay.append(svg, spanElement)
 
-        albums[3].photos.forEach(photo => {
-            let photosDiv = createElement('div');
-            photosDiv.classList.add('swiper-slide')
-            let image = createElement('img')
-            image.src = photo.url
-            photosDiv.append(image)
-            sliderDiv.append(photosDiv)
-        });
+//         albums[3].photos.forEach(photo => {
+//             let photosDiv = createElement('div');
+//             photosDiv.classList.add('swiper-slide')
+//             let image = createElement('img')
+//             image.src = photo.url
+//             photosDiv.append(image)
+//             sliderDiv.append(photosDiv)
+//         });
 
-        userAlbums.append(albumDiv)
-        albumDiv.append(sliderDiv, pagination, prevButton, nextButton, autoplay)
+//         userAlbums.append(albumDiv)
+//         albumDiv.append(sliderDiv, pagination, prevButton, nextButton, autoplay)
 
-        return userAlbums
-      }
+//         return userAlbums
+//       }
