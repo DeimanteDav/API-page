@@ -1,5 +1,5 @@
 import { API_URL } from "./config.js";
-import { fetchData, renderPostCard } from "./functions.js";
+import { renderPostCard } from "./functions.js";
 import pagination from "./components/pagination.js";
 import header from "./components/header.js";
 
@@ -11,7 +11,7 @@ async function posts() {
     const itemsPerPage = urlParams.get('items-per-page') ?? 10
     const postsDiv = document.querySelector('#posts');
     
-    const postResponse = await fetchData(`${API_URL}/posts?_expand=user&_page=${page}&_limit=${itemsPerPage}`)
+    const postResponse = await fetch(`${API_URL}/posts?_expand=user&_page=${page}&_limit=${itemsPerPage}`)
     const posts = await postResponse.json()
     
     posts.forEach(post => {

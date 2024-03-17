@@ -1,7 +1,7 @@
 import { API_URL } from "./config.js";
 import pagination from "./components/pagination.js";
 import header from "./components/header.js";
-import { createCardElementImg, fetchData } from "./functions.js";
+import { createCardElementImg } from "./functions.js";
 
 async function albumsData() {
     const queryParams = document.location.search

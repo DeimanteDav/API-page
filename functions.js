@@ -6,68 +6,6 @@ export const fetchData = async (url) => {
     return data
 }
 
-function renderComments(comments) {
-    const postComment = document.createElement('div');
-    postComment.textContent = 'Comments:'
-
-    comments.forEach(comment => {
-        const commentDiv = document.createElement('div');
-        commentDiv.id = `comment-${comment.id}`
-        const commentTitle = document.createElement('p');
-        const commentBody = document.createElement('p');
-        const commentMail = document.createElement('p');
-
-        commentTitle.textContent = `Title: ${comment.name}`
-        commentBody.textContent = `Content: ${comment.body}`
-        commentMail.textContent = `Email: ${comment.email}`
-        commentDiv.append(commentTitle, commentBody, commentMail)
-        postComment.append(commentDiv)
-    });
-
-    return postComment
-}
-
-export function renderSinglePost(params) {
-    const {post, user, showBody, comments, showReadMore, titleUrl} = params
-
-    const postItem = document.createElement('div');
-    postItem.classList.add('post-item')
-
-    const postTitle = document.createElement('h2');
-    postTitle.textContent = `Title: ${post.title}`
-    
-    postItem.append(postTitle)
-    
-    if (titleUrl) {
-        postTitle.innerHTML = `<a href="./post.html?postId=${post.id}">${post.title}</a>`
-    }
-
-    if (user) {
-        const author = document.createElement('span');
-        author.innerHTML = `Author: <a href="./user.html?userId=${user.id}">${user.name}</a>`
-        postItem.append(author)
-    }
-
-    if (showBody) {
-        const postBody = document.createElement('p');
-        postBody.textContent = `Paragraph: ${post.body}`
-        
-        postItem.append(postBody)
-    }
-
-    if (comments) {
-        postItem.append(renderComments(comments))
-    }
-
-    if (showReadMore) {
-        const readMoreLink = document.createElement('a');
-        readMoreLink.href = `./post.html?postId=${post.id}`
-        readMoreLink.textContent = 'Read more'
-        postItem.append(readMoreLink)
-    }
-    return postItem
-}
-
 
 export function navigation() {
     const div = createElement('div', 'collapse navbar-collapse')
@@ -256,6 +194,7 @@ export function renderUserCard(user) {
 
     return createCardElement(userData)
 }
+
 
 export function renderPostCard(post) {
     const postData = {

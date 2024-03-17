@@ -1,6 +1,5 @@
 import header from "./components/header.js";
 import { API_URL } from "./config.js";
-import pagination from "./components/pagination.js";
 import { fetchData, renderUserCard } from "./functions.js";
 
 async function usersData() {
