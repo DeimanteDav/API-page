@@ -1,7 +1,7 @@
 import { API_URL } from "./config.js";
 import pagination from "./components/pagination.js";
 import header from "./components/header.js";
-import { createElement, renderAlbumCard } from "./functions.js";
+import { createCardElementImg, fetchData } from "./functions.js";
 
 async function albumsData() {
     const queryParams = document.location.search
@@ -15,8 +15,19 @@ async function albumsData() {
     
     const albumsDiv = document.querySelector('#albums');
 
-    albums.forEach((album, i) => {
-        albumsDiv.append(renderAlbumCard(album, i))
+    albums.forEach(album => {
+        const albumData = {
+            image: album.photos[0].thumbnailUrl,
+            title: album.title,
+            subtitle: `Author: ${album.user.name}`,
+            text: `Amount of photos: ${album.photos.length}`,
+            link: {
+                text: `Go to album's page`,
+                href: `./album.html?albumId=${album.id}`
+            }
+        }
+
+        albumsDiv.append(createCardElementImg(albumData))
     });
 
     albumsDiv.after(pagination('albums', albumsResponse, page, itemsPerPage, albumsDiv))

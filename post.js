@@ -1,15 +1,13 @@
 import { API_URL } from "./config.js";
 import header from "./components/header.js";
-import { createElement, createListItem} from "./functions.js";
+import { createElement, createListItem, fetchData} from "./functions.js";
 
 async function postData() {
     const queryParams = document.location.search
     const urlParams = new URLSearchParams(queryParams)
-
     const postId = urlParams.get('postId')
 
-    const postResponse = await fetch(`${API_URL}/posts/${postId}?_embed=comments&_expand=user`)
-    const post = await postResponse.json()
+    const post = await fetchData(`${API_URL}/posts/${postId}?_embed=comments&_expand=user`)
 
     const postDiv = document.querySelector('#post');
     const title = createElement('h1', '', post.title)
@@ -38,7 +36,7 @@ async function postData() {
         const commentTitle = createElement('div', 'fw-bold', comment.name)
         const commentContent = createElement('div', 'ms-2 me-auto', comment.body)
         const email = createElement('div', 'mb-4', `Email: ${comment.email}`)
-
+        commentItem.id = `comment-${comment.id}`
         commentContent.prepend(commentTitle, email)
         commentItem.append(commentContent)
         commentsList.append(commentItem)

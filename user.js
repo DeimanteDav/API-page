@@ -1,15 +1,14 @@
 import header from "./components/header.js";
 import { API_URL } from "./config.js";
-import { createElement, createListItem, renderSinglePost } from "./functions.js";
+import { createElement, createListItem, fetchData, renderSinglePost } from "./functions.js";
 
 
 async function userData() {
   const queryParams = document.location.search
   const urlParams = new URLSearchParams(queryParams)
-  
   const userId = urlParams.get('userId')
   
-  const userResponse = await fetch(`${API_URL}/users/${userId}?_embed=posts&_embed=albums`)
+  const userResponse = await fetchData(`${API_URL}/users/${userId}?_embed=posts&_embed=albums`)
   const user = await userResponse.json()
 
   // const albumResponse = await fetch(`${API_URL}/albums?userId=${userId}&_embed=photos`)

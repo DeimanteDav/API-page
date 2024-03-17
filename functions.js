@@ -142,7 +142,7 @@ export function createElement(type = 'div', classNames, text) {
 
 export function createCardElement(params) {
     const {title, subtitle, text, link, anotherLink} = params
-
+    // console.log(params);
     if (title) {
         const card = createElement('div', 'card my-4')
         const cardBody = createElement('div', 'card-body')
@@ -198,29 +198,50 @@ export function createListItem(title, text, href) {
     }
 }
 
+export function createCardElementImg(params) {
+    const {image, title, subtitle, text, link} = params 
+
+    if (image && title){
+        const card = createElement('div', 'card my-4')
+        const row = createElement('div', 'row p-4')
+    
+        const thumbnailDiv = createElement('div', 'col-auto')
+        const thumbnailImg = createElement('img', 'img-fluid rounded')
+        thumbnailImg.src = image
+        thumbnailDiv.append(thumbnailImg)
+    
+        const dataDiv = createElement('div', 'col')
+        const titleEl = createElement('h5', 'card-title', `${title}`)
+        
+        dataDiv.append(titleEl)
+
+        if (subtitle) {
+            const subtitleEl = createElement('h6', 'card-subtitle mb-2 text-body-secondary', subtitle)
+            dataDiv.append(subtitleEl)
+        }
+
+        if (text) {
+            const textEl = createElement('p', 'card-text', text)
+            dataDiv.append(textEl)
+        }
+
+        if (link) {
+            const {text, href} = link
+            const linkEl = createElement('a', 'card-link', text)
+            linkEl.href = href
+            dataDiv.append(linkEl)
+        }
+
+        row.append(thumbnailDiv, dataDiv)
+        card.append(row)
+
+        return card
+    }
+}
+
 export function renderAlbumCard(album, i){
     console.log(album);
-    const card = createElement('div', 'card my-4')
-    const row = createElement('div', 'row p-4')
-
-    const thumbnailDiv = createElement('div', 'col-auto')
-    const thumbnailImg = createElement('img', 'img-fluid rounded')
-    thumbnailImg.src = album.photos[0].thumbnailUrl
-    thumbnailDiv.append(thumbnailImg)
-
-    const dataDiv = createElement('div', 'col')
-    const title = createElement('h5', 'card-title', `${i + 1}. ${album.title}`)
-    
-    const subtitle = createElement('h6', 'card-subtitle mb-2 text-body-secondary', `Author: ${album.user.name}`)
-    const text = createElement('p', 'card-text', `Amount of photos: ${album.photos.length}`)
-    const link = createElement('a', 'card-link', `Go to album's page`)
-    link.href = `./album.html?albumId=${album.id}`
-
-    dataDiv.append(title, subtitle, text, link)
-    row.append(thumbnailDiv, dataDiv)
-    card.append(row)
-
-    return card
+   
 }
 
 export function renderUserCard(user) {

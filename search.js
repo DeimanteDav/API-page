@@ -1,4 +1,4 @@
-import { fetchData, renderAlbumCard, renderPostCard, renderSinglePost, renderUserCard } from "./functions.js";
+import { createCardElement, createCardElementImg, fetchData, renderPostCard, renderUserCard } from "./functions.js";
 import { API_URL } from "./config.js";
 import header from "./components/header.js";
 
@@ -68,10 +68,21 @@ async function searchAlbums(search, searchResults) {
     } else {
         searchTitle.textContent = `Found ${albums.length} albums`
     }
-    
+
     searchResults.append(searchTitle)
-    albums.forEach((album, i) => {
-        searchResults.append(renderAlbumCard(album, i))
+    albums.forEach((album) => {
+        console.log(album);
+        const albumData = {
+            image: album.photos[0].thumbnailUrl,
+            title: album.title,
+            subtitle: `Author: ${album.user.name}`,
+            text: `Amount of photos: ${album.photos.length}`,
+            link: {
+                text: `Go to album's page`,
+                href: `./album.html?albumId=${album.id}`
+            }
+        }
+        searchResults.append(createCardElementImg(albumData))
     });
 }
 
@@ -131,15 +142,18 @@ async function searchComments(search, searchResults) {
     searchResults.append(searchTitle)
 
     comments.forEach(comment => {
-        const title = document.createElement('h2');
-        title.innerHTML = `<a href='./post.html#comment-${comment.id}?postId=${comment.postId}'>Title: ${comment.name}</a>`
+        console.log(comment);
+        const commentData = {
+            title: comment.name,
+            subtitle: `Email: ${comment.email}`,
+            text: comment.body,
+            link: {
+                text: `Go to post's page`,
+                href: `./post.html?postId=${comment.postId}#comment-${comment.id}`
+            }
+        }
 
-        const content = document.createElement('p');
-        content.textContent = `Content: ${comment.body}`
-
-        const email = document.createElement('p');
-        email.textContent = `Email: ${comment.email}`
-        searchResults.append(title, content, email)
+        searchResults.append(createCardElement(commentData))
     });
 }
 
@@ -159,13 +173,11 @@ async function searchPhotos(search, searchResults) {
     searchResults.append(searchTitle)
 
     photos.forEach(photo => {
-        const title = document.createElement('h2');
-        title.textContent = `Title: ${photo.title}`
-
-        const img = document.createElement('img');
-        img.src = photo.thumbnailUrl
-
-        searchResults.append(title, img)
+        const photoData = {
+            image: photo.thumbnailUrl,
+            title: photo.title,
+        }
+        searchResults.append(createCardElementImg(photoData))
     });
 }
 
