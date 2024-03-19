@@ -1,6 +1,7 @@
 import { API_URL } from "./config.js";
 import header from "./components/header.js";
 import { createElement, createListItem, fetchData} from "./functions.js";
+import buttonGroup from "./components/buttonGroup.js";
 
 async function postData() {
     const queryParams = document.location.search
@@ -24,9 +25,8 @@ async function postData() {
 
     postInfoList.append(authorItem, paragraphItem)
 
-
-    const commentsWrapper = createElement('div')
-    const commentsList = createElement('ul', 'list-group list-group-flush mb-5');
+    const commentsWrapper = createElement('div', 'my-5')
+    const commentsList = createElement('ul', 'list-group list-group-flush');
     const commentsText = createElement('p', 'h4', 'Comments')
 
     commentsWrapper.append(commentsText, commentsList)
@@ -42,7 +42,7 @@ async function postData() {
         commentsList.append(commentItem)
     })
 
-    postDiv.append(title, postInfoList, commentsWrapper)
+    postDiv.append(title, postInfoList, buttonGroup('Are you sure you want to delete this Post?', './post/editPost.html?postId=1'), commentsWrapper)
 
     header()
 }

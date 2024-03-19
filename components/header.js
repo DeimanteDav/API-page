@@ -1,9 +1,9 @@
 import { createElement, navigation } from '../functions.js'
 
 export default function header() {
-    let header = createElement('nav', 'navbar navbar-expand-lg border-bottom')
+    const header = createElement('nav', 'navbar navbar-expand-lg border-bottom')
     // header.dataset.bsTheme = 'dark'
-    let nav = navigation()
+    const nav = navigation()
 
     // header.style.marginBottom = '30px'
     header.innerHTML = `
