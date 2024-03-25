@@ -1,10 +1,10 @@
 import { createElement } from "../functions.js";
 
-export default function toast(text, confirmation) {
+export default function toast({text, confirmation}) {
+    console.log(text, confirmation);
     const toastContainer = createElement('div', 'toast-container position-fixed bottom-0 end-0 p-3')
 
     const toast = createElement('div', `toast align-items-center bg-light`)
-    console.log(text);
     toast.id = 'liveToast'
     toast.role = 'alert'
     toast.ariaLive = 'assertive'
@@ -14,7 +14,6 @@ export default function toast(text, confirmation) {
     const toastText1 = createElement('span', '', text)
     const toastText2 = createElement('span', 'text-danger', `This is a Mock up API. Changes won't be saved`)
     toastBody.append(toastText1, toastText2)
-
 
     if (confirmation) {
         const buttonsWrapper = createElement('div', 'mt-2 pt-2 border-top')
@@ -33,7 +32,9 @@ export default function toast(text, confirmation) {
 
 
         yesBtn.addEventListener('click', (e) => {
-            history.back()
+            e.preventDefault()
+            confirmation.handler(confirmation.params && confirmation.params)
+            toastContainer.remove()
         })
     } else {
         const toastFlex = createElement('div', 'd-flex')
@@ -52,4 +53,5 @@ export default function toast(text, confirmation) {
 
     const myToast = new bootstrap.Toast(toast);
     myToast.show()
+
 }

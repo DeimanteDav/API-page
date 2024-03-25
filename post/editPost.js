@@ -1,5 +1,6 @@
 import form from "../components/form.js";
-import header from "../components/header.js";
+import postFormItems from "../components/postFormItems.js";
+import postInfoList from "../components/postInfoList.js";
 import toast from "../components/toast.js";
 import { API_URL } from "../config.js";
 import { createElement, fetchData } from "../functions.js";
@@ -9,16 +10,19 @@ async function editPost() {
     const urlParams = new URLSearchParams(queryParams)
     const postId = urlParams.get('postId')
 
-    const postUrl = `${API_URL}/posts/${postId}`
-    const post = await fetchData(postUrl)
-
+    const postUrl = `${API_URL}/posts/${postId}?_expand=user`
     const container = document.getElementById('edit-post-page')
-
+    
+    const post = await fetchData(postUrl)
+    const users = await fetchData(`${API_URL}/users`)
+    
+    const pageTitle = createElement('h1', '', 'Edit Post')
 
     async function handleSubmit(updatedData) {
         const data = {
             title: updatedData.title,
-            body: updatedData.body,
+            userId: updatedData.user,
+            body: updatedData.paragraph,
         }
 
         const response = await fetch(postUrl, {
@@ -30,17 +34,26 @@ async function editPost() {
         })
 
         if (response.ok) {
-            toast('Post succesfuly updated.')
+            const editedPost = await response.json()
+            const user = await fetchData(`${API_URL}/users/${editedPost.userId}`)
+
+            editedPost.user = user
+
+            const editedPostWrapper = createElement('div', 'my-5')
+            const infoElement = createElement('p', '', 'Post would look like this')
+            const editedTitle = createElement('h2', '', editedPost.title)
+
+            editedPostWrapper.append(infoElement, editedTitle, postInfoList(editedPost, true))
+            container.append(editedPostWrapper)
+
+
+            toast({text: 'Post succesfuly updated.'})
         } else {
-            toast('Something went wrong')
+            toast({text: 'Something went wrong'})
         }
     }
 
-    const formData = [
-        {value: post.title, label: 'Title', type: 'text', id: 'title'},
-        {value: post.body, label: 'Paragraph', id: 'body', textarea: true}
-    ]
 
-    container.append(form('Post', handleSubmit, formData))
+    container.append(pageTitle, form(handleSubmit, postFormItems(users, post.userId, post.title, post.body)))
 }
 editPost()

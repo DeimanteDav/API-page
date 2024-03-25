@@ -4,15 +4,30 @@ import { createCardElementImg, createElement, fetchData, renderPostCard } from "
 
 
 // post, put, patch, delete
-// erorai
 
 // prie postu komentarus rasyti
-// redaguojant toast
-// istrynus toast
+// poste ir albume pakeisti autoriu paciam puslapy patch 
+// komentarus redaguot paciam puslapy post'o
+// is userio pridet post'a nukreipus jau butu parinktas useris
+// Papostinus paroodyti kaip atrodytu
+// is formu legend istrynt
+// editUser.html i edit-user.html pakeist visus
+// kuriant postams select author
+// autorius visur det irgi
 
 
 
 /*
+    write github readme. some info about the project:
+    vanilla javascript project with api: https://jsonplaceholder.typicode.com.;
+    bootstrap is used, photoswipe js,
+    there is pagination, data per page,
+    search page (you can search by categories: albums, posts, users, comments, photos);
+    get project pages: users, user, albums, album, posts, post.;
+    you can create edit delete as well (post, put, patch, delete)
+    toast
+
+
     naudojamas api koks nuoroda
     bootstrapas naudojamas
     photoswipe

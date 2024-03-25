@@ -1,6 +1,6 @@
 import header from "./components/header.js";
 import { API_URL } from "./config.js";
-import { fetchData, renderUserCard } from "./functions.js";
+import { createElement, fetchData, renderUserCard } from "./functions.js";
 
 async function usersData() {
     const queryParams = document.location.search
@@ -11,7 +11,13 @@ async function usersData() {
      
     const users = await fetchData(`${API_URL}/users?_embed=posts&_page=${page}&_limit=${itemsPerPage}`)
 
-    const usersDiv = document.querySelector('#users');
+    const container = document.getElementById('users-page')
+    const titleEl = createElement('h1', 'mb-3', 'Users')
+    const createUserLink = createElement('a', '', 'Create a new User')
+    createUserLink.href = './user/create-user.html'
+
+    const usersDiv = createElement('div')
+    container.append(titleEl, createUserLink, usersDiv)
 
     users.forEach(user => {
         usersDiv.append(renderUserCard(user))

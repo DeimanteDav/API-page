@@ -1,6 +1,7 @@
 import { createElement } from "../functions.js";
 
 export default function pagination(pageName, response, page, itemsPerPage, itemsWrap) {
+    console.log(itemsWrap);
     const total = response.headers.get('X-Total-Count')
     const pageNumber = total/itemsPerPage
 
@@ -9,9 +10,6 @@ export default function pagination(pageName, response, page, itemsPerPage, items
 
     paginationWrapper.append(paginationList)
 
-
-    // const div = createElement('div');
-    // div.classList.add('pagination-div')
 
     const firstPageItem = createElement('li', 'page-item')
     const firstPageLink = createElement('a', 'page-link');

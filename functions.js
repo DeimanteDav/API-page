@@ -1,4 +1,4 @@
-import { MENU_ITEMS } from "./config.js";
+import { API_URL, MENU_ITEMS } from "./config.js";
 
 export const fetchData = async (url) => {
     const response = await fetch(url)
@@ -73,6 +73,7 @@ export function createElement(type = 'div', classNames, text) {
   
     if (text) {
       element.textContent = text
+      element.value = text
     }
   
     return element
@@ -214,3 +215,61 @@ export function renderPostCard(post) {
     return createCardElement(postData)
 }
 
+
+export function renderAuthorItem(name, userId, editForm, container, position, list) {
+    let authorItem
+
+    if (list) {
+        authorItem = createListItem('Author', name)
+    } else {
+        authorItem = createElement('div', 'p-2 d-flex justify-content-between align-items-start')
+
+        const authorText = createElement('div', 'fw-bold mx-2', 'Author')
+        const author = createElement('div', 'ms-2 me-auto', name)
+
+        authorItem.append(authorText, author)
+    }
+
+    const editAuthorBtn = createElement('button', 'btn btn-secondary btn-sm', 'Edit')
+    authorItem.append(editAuthorBtn)
+
+    editAuthorBtn.addEventListener('click', async (e) => {
+        e.preventDefault()
+        const form = createElement('form', 'd-flex justify-content-between align-items-start input-group p-2')
+
+        authorItem.remove()
+
+        const users = await fetchData(`${API_URL}/users`)
+        const select = createElement('select' ,'form-select')
+        
+        users.forEach(user => {
+            const option = createElement('option', '', user.name)
+            option.value = user.id
+
+            if (user.id === userId) {
+                option.selected = true
+            }
+
+            select.append(option)
+        })
+        
+        const userBtn = createElement('button', 'btn btn-outline-secondary', 'Save')
+        userBtn.type = 'submit'
+        
+        form.append(select, userBtn)
+
+        if (position === 'after') {
+            container.after(form)
+        } else {
+            container.prepend(form)
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault()
+            const selectedUserId = select.value
+            editForm(form, selectedUserId)
+        })
+    })
+
+    return authorItem
+}
