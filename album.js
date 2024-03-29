@@ -7,7 +7,7 @@ import toast from "./components/toast.js";
 async function album() {
     const queryParams = document.location.search
     const urlParams = new URLSearchParams(queryParams)
-    const albumId = urlParams.get('albumId')
+    const albumId = urlParams.get('album-id')
     
     const album = await fetchData(`${API_URL}/albums/${albumId}?_embed=photos&_expand=user`)
 
@@ -73,7 +73,7 @@ async function album() {
             text: `Are you sure you want to delete this ${album.title} album?`,
             handler: deleteAlbum
         },
-        editHref: `./album/edit-album.html?albumId=${albumId}`
+        editHref: `./album/edit-album.html?album-id=${albumId}`
     })
 
 

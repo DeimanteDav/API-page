@@ -5,16 +5,9 @@ import { createCardElementImg, createElement, fetchData, renderPostCard } from "
 
 // post, put, patch, delete
 
-// prie postu komentarus rasyti
-// poste ir albume pakeisti autoriu paciam puslapy patch 
-// komentarus redaguot paciam puslapy post'o
-// is userio pridet post'a nukreipus jau butu parinktas useris
-// Papostinus paroodyti kaip atrodytu
-// is formu legend istrynt
-// editUser.html i edit-user.html pakeist visus
-// kuriant postams select author
-// autorius visur det irgi
 
+
+// naujo komentaro savint negalima
 
 
 /*
@@ -64,7 +57,7 @@ async function homePage() {
             text: `Amount of photos: ${album.photos.length}`,
             link: {
                 text: `Go to album's page`,
-                href: `./album.html?albumId=${album.id}`
+                href: `./album.html?album-id=${album.id}`
             }
         }
 

@@ -8,7 +8,7 @@ import { createElement, createListItem, fetchData } from "./functions.js";
 async function userData() {
   const queryParams = document.location.search
   const urlParams = new URLSearchParams(queryParams)
-  const userId = urlParams.get('userId')
+  const userId = urlParams.get('user-id')
   
   const user = await fetchData(`${API_URL}/users/${userId}?_embed=posts&_embed=albums`)
 
@@ -29,7 +29,7 @@ async function userData() {
         text: `Are you sure you want to delete this ${user.name}?`,
         handler: deleteUser
     },
-      editHref: `./user/edit-user.html?userId=${userId}`
+      editHref: `./user/edit-user.html?user-id=${userId}`
   })
 
 
@@ -55,7 +55,7 @@ function renderPosts(user) {
   const postsList = createElement('div', 'list-group');
 
   user.posts.forEach(post => {
-    const postItem = createListItem('', post.title, `./post.html?postId=${post.id}`)
+    const postItem = createListItem('', post.title, `./post.html?post-id=${post.id}`)
 
     postsList.append(postItem)
   });

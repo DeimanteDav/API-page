@@ -189,7 +189,7 @@ export function renderUserCard(user) {
         subtitle: `Amount of posts: ${user.posts.length}`,
         link: {
             text: `Go to user's page`,
-            href: `./user.html?userId=${user.id}`
+            href: `./user.html?user-id=${user.id}`
         }
     }
 
@@ -204,11 +204,11 @@ export function renderPostCard(post) {
         text: post.body,
         link: {
             text: `Go to author's page`,
-            href: `./user.html?userId=${post.user.id}`
+            href: `./user.html?user-id=${post.user.id}`
         },
         anotherLink: {
             text: `Read more`,
-            href: `./post.html?postId=${post.id}`
+            href: `./post.html?post-id=${post.id}`
         }
     }
 
