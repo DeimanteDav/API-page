@@ -7,7 +7,7 @@ import { createElement, fetchData } from "../functions.js";
 async function editAlbum() {
     const queryParams = document.location.search
     const urlParams = new URLSearchParams(queryParams)
-    const albumId = urlParams.get('albumId')
+    const albumId = urlParams.get('album-id')
 
     const albumUrl = `${API_URL}/albums/${albumId}?_embed=photos`
     const album = await fetchData(albumUrl)

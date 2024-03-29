@@ -8,7 +8,7 @@ import { createElement, fetchData } from "../functions.js";
 async function editPost() {
     const queryParams = document.location.search
     const urlParams = new URLSearchParams(queryParams)
-    const postId = urlParams.get('postId')
+    const postId = urlParams.get('post-id')
 
     const postUrl = `${API_URL}/posts/${postId}?_expand=user`
     const container = document.getElementById('edit-post-page')

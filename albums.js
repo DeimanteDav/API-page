@@ -31,7 +31,7 @@ async function albumsData() {
             text: `Amount of photos: ${album.photos.length}`,
             link: {
                 text: `Go to album's page`,
-                href: `./album.html?albumId=${album.id}`
+                href: `./album.html?album-iuserd=${album.id}`
             }
         }
 

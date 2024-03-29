@@ -8,7 +8,7 @@ import postInfoList from "./components/postInfoList.js";
 async function postData() {
     const queryParams = document.location.search
     const urlParams = new URLSearchParams(queryParams)
-    const postId = urlParams.get('postId')
+    const postId = urlParams.get('post-id')
 
     const post = await fetchData(`${API_URL}/posts/${postId}?_embed=comments&_expand=user`)
 
@@ -44,7 +44,7 @@ async function postData() {
 
         if (response.ok) {
             commentsList.prepend(renderCommentItem(newComment, editComment))   
-            
+            post.comments.unshift(newComment)
             toast({text: 'Comment posted successfully'})
         }
     }
@@ -82,24 +82,31 @@ async function postData() {
 
         submitBtn.addEventListener('click', async (e) => {
             e.preventDefault()
+            const editedComment = {
+                postId: Number(postId),
+                name: nameElement.value,
+                email: emailElement.value,
+                body: bodyElement.value
+            }
 
             const response = await fetch(`${API_URL}/comments/${id}`, {
                 method: 'PUT',
-                body: JSON.stringify({
-                    postId: Number(postId),
-                    name: nameElement.value,
-                    email: emailElement.value,
-                    body: bodyElement.value
-                }),
+                body: JSON.stringify(editedComment),
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
                 },
             })
-    
-            
+                
             if (response.ok) {
                 const editedComment = await response.json()
 
+                const updatedCommentItem = renderCommentItem(editedComment, editComment)
+
+                editForm.after(updatedCommentItem)
+                editForm.remove()
+
+                toast({text: 'Comment updated successfully'})
+            } else if (response.status === 500) {
                 const updatedCommentItem = renderCommentItem(editedComment, editComment)
 
                 editForm.after(updatedCommentItem)
@@ -112,7 +119,6 @@ async function postData() {
     }
 
     post.comments.forEach(comment => {
-        console.log(comment);
         commentsList.append(renderCommentItem(comment, editComment))
     })
 
@@ -130,7 +136,7 @@ async function postData() {
             text: 'Are you sure you want to delete this Post?',
             handler: deletePost
         },
-        editHref: `./post/edit-post.html?postId=${postId}`
+        editHref: `./post/edit-post.html?post-id=${postId}`
     })
     
     commentsWrapper.append(commentsText, commentForm, commentsList)
@@ -159,6 +165,7 @@ function renderCommentForm(handleSubmit, buttons) {
     
     commentForm.append(nameInput, emailInput, bodyInput, buttons)
 
+    console.log(commentForm);
     commentForm.addEventListener('submit', (e) => {
         e.preventDefault()
 
@@ -174,6 +181,7 @@ function renderCommentForm(handleSubmit, buttons) {
 
 
 function renderCommentItem(comment, handleSubmit) {
+    console.log(comment);
     const commentItem = createElement('li', 'py-3 list-group-item d-flex flex-column justify-content-between align-items-start')
     commentItem.id = `comment-${comment.id}`
 
@@ -205,7 +213,6 @@ function renderCommentItem(comment, handleSubmit) {
         if (response.ok) {
             document.getElementById(`comment-${comment.id}`).remove()
         }
-        console.log(response);
     }
         
     commentItem.append(commentBody, buttons)

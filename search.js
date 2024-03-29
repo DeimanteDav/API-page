@@ -79,7 +79,7 @@ async function searchAlbums(search, searchResults) {
             text: `Amount of photos: ${album.photos.length}`,
             link: {
                 text: `Go to album's page`,
-                href: `./album.html?albumId=${album.id}`
+                href: `./album.html?album-id=${album.id}`
             }
         }
         searchResults.append(createCardElementImg(albumData))
@@ -149,7 +149,7 @@ async function searchComments(search, searchResults) {
             text: comment.body,
             link: {
                 text: `Go to post's page`,
-                href: `./post.html?postId=${comment.postId}#comment-${comment.id}`
+                href: `./post.html?post-id=${comment.postId}#comment-${comment.id}`
             }
         }
 

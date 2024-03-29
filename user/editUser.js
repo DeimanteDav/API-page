@@ -6,10 +6,9 @@ import { API_URL } from "../config.js"
 import { createElement, fetchData } from "../functions.js"
 
 async function editUser() {
-    console.log('edit');
     const queryParams = document.location.search
     const urlParams = new URLSearchParams(queryParams)
-    const userId = urlParams.get('userId')
+    const userId = urlParams.get('user-id')
 
     const userUrl = `${API_URL}/users/${userId}`
     const user = await fetchData(userUrl)
