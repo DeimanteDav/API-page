@@ -5,13 +5,11 @@ export default function form(handleSubmit, elements) {
     const form = createElement('form', 'needs-validation')
     const updatedData = {}
     form.setAttribute('novalidate', true)
-    console.log(elements);
     
     elements.forEach(element => {
         const inputElement = element.querySelector('input, textarea, select');
         
         if (inputElement) {
-            console.log(inputElement);
             updatedData[inputElement.id] = inputElement.value;
 
             inputElement.addEventListener('input', () => {

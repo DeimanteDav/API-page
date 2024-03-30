@@ -14,7 +14,6 @@ export default function buttonGroup({deleteInfo, editHref, editInfo}) {
         const {handler, params} = editInfo
         editBtn.addEventListener('click', (e) => {
             e.preventDefault()
-            console.log(...params);
             handler(...params)
         })
     }

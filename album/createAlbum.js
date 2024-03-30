@@ -69,7 +69,6 @@ async function createAlbum() {
 
                 if (response.ok) {
                     newAlbum.photos.push(await response.json())
-                    console.log(newAlbum);
                     toast({text: 'Album succesfuly updated.'})
                 }
             })

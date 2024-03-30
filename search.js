@@ -71,7 +71,6 @@ async function searchAlbums(search, searchResults) {
 
     searchResults.append(searchTitle)
     albums.forEach((album) => {
-        console.log(album);
         const albumData = {
             image: album.photos[0].thumbnailUrl,
             title: album.title,
@@ -142,7 +141,6 @@ async function searchComments(search, searchResults) {
     searchResults.append(searchTitle)
 
     comments.forEach(comment => {
-        console.log(comment);
         const commentData = {
             title: comment.name,
             subtitle: `Email: ${comment.email}`,
