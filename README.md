@@ -11,12 +11,12 @@ This project is a Vanilla JavaScript application utilizing the [JSONPlaceholder 
 
 ## Features
 
-- CRUD operations (Create, Read, Update, Delete) on users, albums, posts, comments, and photos
-- Pagination for efficient navigation through large datasets
-- Search functionality allowing users to search by categories: albums, posts, users, comments, and photos
-- Implementation of Bootstrap for responsive and attractive UI design
-- Integration of PhotoSwipe JS for an interactive image gallery experience
-- Toast notifications for feedback on user actions
+- **CRUD operations** (Create, Read, Update, Delete) on users, albums, posts, comments, and photos.
+- **Pagination**.
+- **Search** functionality allowing users to search **by categories**: albums, posts, users, comments, and photos
+- **Bootstrap** implementation.
+- Integration of **PhotoSwipe** for an interactive image gallery experience.
+- **Toast** notifications for feedback on user actions.
 
 ## Technologies Used
 
@@ -46,18 +46,19 @@ This project is a Vanilla JavaScript application utilizing the [JSONPlaceholder 
 3. **User Profile Page**
    - Details of a specific user, including their name, email, address, etc.
    - List of posts created by the user.
-   - Option to edit or delete the user profile.
+   - Option to edit or delete the user, as well as create new post.
 
 4. **Albums Page**
-   - Gallery view of albums retrieved from the API.
+   - List of albums retrieved from the API.
    - Thumbnail images of each album cover.
    - Clickable links to view the contents of each album.
+   - Pagination controls for navigating through multiple pages of albums.
    - Option to create new albums.
 
 5. **Album Details Page**
    - List of photos within a specific album.
    - Clickable images for each photo, allowing users to view them in full size.
-   - Integration of PhotoSwipe for an interactive image gallery experience.
+   - Integration of **PhotoSwipe**.
    - Option to edit or delete the album, as well as add new photos to it.
 
 6. **Posts Page**
