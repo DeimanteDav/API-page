@@ -15,7 +15,6 @@ async function editAlbum() {
     const container = document.getElementById('edit-album-page')
 
     const pageTitle = createElement('h1', '', 'Edit Album')
-console.log(album);
 
     const uploadPhotoWrapper = createElement('div', 'col-12')
     const uploadPhotoLabel = createElement('label', 'form-label', 'Upload Photos')

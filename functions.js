@@ -81,7 +81,6 @@ export function createElement(type = 'div', classNames, text) {
 
 export function createCardElement(params) {
     const {title, subtitle, text, link, anotherLink} = params
-    // console.log(params);
     if (title) {
         const card = createElement('div', 'card my-4')
         const cardBody = createElement('div', 'card-body')
@@ -176,11 +175,6 @@ export function createCardElementImg(params) {
 
         return card
     }
-}
-
-export function renderAlbumCard(album, i){
-    console.log(album);
-   
 }
 
 export function renderUserCard(user) {

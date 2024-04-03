@@ -1,7 +1,6 @@
 import { createElement } from "../functions.js";
 
 export default function pagination(pageName, response, page, itemsPerPage, itemsWrap) {
-    console.log(itemsWrap);
     const total = response.headers.get('X-Total-Count')
     const pageNumber = total/itemsPerPage
 
@@ -114,6 +113,5 @@ function paginationSelect(itemsPerPage, total) {
     })
     itemsDiv.append(text, selectItemsPerPage)
 
-    console.log(itemsDiv);
     return itemsDiv    
 }
