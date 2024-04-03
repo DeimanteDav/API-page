@@ -165,7 +165,6 @@ function renderCommentForm(handleSubmit, buttons) {
     
     commentForm.append(nameInput, emailInput, bodyInput, buttons)
 
-    console.log(commentForm);
     commentForm.addEventListener('submit', (e) => {
         e.preventDefault()
 
@@ -181,7 +180,6 @@ function renderCommentForm(handleSubmit, buttons) {
 
 
 function renderCommentItem(comment, handleSubmit) {
-    console.log(comment);
     const commentItem = createElement('li', 'py-3 list-group-item d-flex flex-column justify-content-between align-items-start')
     commentItem.id = `comment-${comment.id}`
 

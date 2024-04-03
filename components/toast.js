@@ -1,7 +1,6 @@
 import { createElement } from "../functions.js";
 
 export default function toast({text, confirmation}) {
-    console.log(text, confirmation);
     const toastContainer = createElement('div', 'toast-container position-fixed bottom-0 end-0 p-3')
 
     const toast = createElement('div', `toast align-items-center bg-light`)
