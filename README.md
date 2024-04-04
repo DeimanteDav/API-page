@@ -1,4 +1,7 @@
 # JSONPlaceholder API Web Application
+<!-- DEPLOYED PAGE LINK -->
+<!-- EMOJIES -->
+[Live Demo](https://deimantedav.github.io/API-page/) 🚀
 
 This project is a Vanilla JavaScript application utilizing the [JSONPlaceholder API](https://jsonplaceholder.typicode.com) to demonstrate CRUD (Create, Read, Update, Delete) operations on various resources such as users, albums, posts, comments, and photos. It also incorporates Bootstrap for styling and PhotoSwipe JS for image gallery functionality. The application includes pagination, search functionality, and toast notifications.
 
@@ -13,7 +16,7 @@ This project is a Vanilla JavaScript application utilizing the [JSONPlaceholder 
 
 - **CRUD operations** (Create, Read, Update, Delete) on users, albums, posts, comments, and photos.
 - **Pagination**.
-- **Search** functionality allowing users to search **by categories**: albums, posts, users, comments, and photos
+- **Search** functionality allowing users to search **by categories**: albums, posts, users, comments, and photos.
 - **Bootstrap** implementation.
 - Integration of **PhotoSwipe** for an interactive image gallery experience.
 - **Toast** notifications for feedback on user actions.
@@ -29,17 +32,18 @@ This project is a Vanilla JavaScript application utilizing the [JSONPlaceholder 
 
 1. Upon opening the application, you will be presented with the main page showcasing various resources.
 2. Navigate through different pages such as users, albums, posts, etc., using the navigation menu.
-3. Perform CRUD operations by clicking on respective buttons (create, edit, delete).
+3. Perform CRUD operations by clicking on respective buttons (Create, Read, Update, Delete).
+<!-- papyldit 3. -->
 4. Utilize the search bar to search for specific items within categories.
-5. Enjoy the image gallery functionality with PhotoSwipe JS.
+5. Image gallery functionality with PhotoSwipe JS.
 
 ## Application Pages
 
-1. **Home Page**
+1. **[Home Page](https://deimantedav.github.io/API-page/)**
    - Overview of the application.
    - Navigation menu to access different sections of the application.
 
-2. **Users Page**
+2. **[Users Page](https://deimantedav.github.io/API-page/users.html)**
    - List of users retrieved from the API.
    - Option to create new users.
 
@@ -48,7 +52,7 @@ This project is a Vanilla JavaScript application utilizing the [JSONPlaceholder 
    - List of posts created by the user.
    - Option to edit or delete the user, as well as create new post.
 
-4. **Albums Page**
+4. **[Albums Page](https://deimantedav.github.io/API-page/albums.html)**
    - List of albums retrieved from the API.
    - Thumbnail images of each album cover.
    - Clickable links to view the contents of each album.
@@ -61,7 +65,7 @@ This project is a Vanilla JavaScript application utilizing the [JSONPlaceholder 
    - Integration of **PhotoSwipe**.
    - Option to edit or delete the album, as well as add new photos to it.
 
-6. **Posts Page**
+6. **[Posts Page](https://deimantedav.github.io/API-page/posts.html)**
    - List of posts retrieved from the API.
    - Pagination controls for navigating through multiple pages of posts.
    - Option to create new posts.
@@ -71,6 +75,6 @@ This project is a Vanilla JavaScript application utilizing the [JSONPlaceholder 
    - Comments section displaying comments associated with the post.
    - Option to edit or delete the post, as well as add new comments to it.
 
-8. **Search**
+8. **Search** - [Live Preview](https://deimantedav.github.io/API-page/search.html)
    - Search functionality accessible from multiple pages.
    - Allows users to search for specific items across different categories (albums, posts, users, comments, photos).
