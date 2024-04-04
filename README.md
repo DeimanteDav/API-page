@@ -1,7 +1,7 @@
 # JSONPlaceholder API Web Application
 [Live Preview](https://deimantedav.github.io/API-page/) 🚀
 
-This project is a Vanilla JavaScript application utilizing the [JSONPlaceholder API](https://jsonplaceholder.typicode.com) to demonstrate CRUD (Create, Read, Update, Delete) operations on various resources such as users, albums, posts, comments, and photos. It also incorporates Bootstrap for styling and PhotoSwipe JS for image gallery functionality. The application includes pagination, search functionality, and toast notifications.
+This project is a **Vanilla JavaScript** application utilizing the [JSONPlaceholder API](https://jsonplaceholder.typicode.com) to demonstrate **CRUD** (Create, Read, Update, Delete) operations on various resources such as users, albums, posts, comments, and photos. It also incorporates **Bootstrap** for styling and **PhotoSwipe JS** for image gallery functionality. The application includes pagination, search functionality, and toast notifications.
 
 ## Table of Contents
 
